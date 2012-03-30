@@ -1,0 +1,9 @@
+/* Override more defaults */
+
+h1, h2, h3, h4, h5 {
+    margin: 0.2em 0 0.5em 0;
+}
+
+.light {
+    color: #ccc;
+}

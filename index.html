@@ -1,0 +1,20 @@
+---
+layout: page
+title: ARCHIE
+tagline: Augmented Reality for Cultural Heritage Interpretation and Education
+---
+{% include JB/setup %}
+
+<h4>This is a blog documenting the development of my MSc project, an augmented reality iPhone app to encourage <br>walking visits to the Antonine Wall. It was built using Jekyll Bootstrap.</h4>
+
+  {% for post in site.posts %}
+  <hr>
+  <div class="row">
+    <div class="span8">
+    <div class="date"></div>
+    <h3><a href= "{{ BASE_PATH }}{{ post.url }}">{{ post.title }} <small>{{ post.description }}</small></a></h3>
+      {{ post.content }}
+    </div>
+    <div class="span2 light">Posted {{ post.date | date_to_long_string }}</div>
+  </div>
+  {% endfor %}
