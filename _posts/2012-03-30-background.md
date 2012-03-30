@@ -32,4 +32,5 @@ The Wikitude platform would be used as the backbone of a short-cycle iterative p
 
 3. Using [Wikitude's SDK](http://www.wikitude.com/developer/documentation/wikitude-sdk), and working from the previous evaluations, begin building a standalone iPhone app.
 
-The next post discusses step 1, and the lessons learned from it.
+####Next
+Step 1, and the lessons learned from it.

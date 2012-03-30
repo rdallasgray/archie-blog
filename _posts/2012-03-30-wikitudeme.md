@@ -20,4 +20,5 @@ The first step I took was to use the [wikitude.me](http://wikitude.me) community
 
 - Icon labels in the cam display are very short (only a few letters). There needs to be a way to maximise the amount of information the icons convey between the icon itself and the label.
 
-The next post deals with the creation of the web service to serve ARML to Wikitude.
+####Next
+Creating the web service to serve ARML to Wikitude.
