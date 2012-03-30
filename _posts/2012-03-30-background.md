@@ -1,9 +1,10 @@
 ---
 layout: post
-title: "Background"
+title: "1. Background"
 description: "A bit of background on the project."
 category: archie
 tags: []
+date: 2012-03-30 11:00:00
 ---
 {% include JB/setup %}
 
@@ -25,10 +26,10 @@ My project advisor, learning that I liked long-distance walking, assigned me a r
 
 The Wikitude platform would be used as the backbone of a short-cycle iterative process, the overall structure being:
 
-1. Use the wikitude.me service (http://wikitude.me) to place points of interest in the wikutde.me World. These would then be visible on both the map and camera views of the Wikitude iPhone app, enabling simple evaluation.
+1. Use the [wikitude.me service](http://wikitude.me) to place points of interest in the wikutde.me World. These would then be visible on both the map and camera views of the Wikitude iPhone app, enabling simple evaluation.
 
-2. Building on the results of the previous step's evaluation, carry over the points of interest into a web service providing an ARML feed (http://openarml.org) to Wikitude. This would allow points to be given custom icons, and have media attached to them. Further and more detailed evaluation could then be undertaken.
+2. Building on the results of the previous step's evaluation, carry over the points of interest into a web service providing an [ARML feed](http://openarml.org) to Wikitude. This would allow points to be given custom icons, and have media attached to them. Further and more detailed evaluation could then be undertaken.
 
-3. Using Wikitude's SDK (http://www.wikitude.com/developer/documentation/wikitude-sdk), and working from the previous evaluations, begin building a standalone iPhone app.
+3. Using [Wikitude's SDK](http://www.wikitude.com/developer/documentation/wikitude-sdk), and working from the previous evaluations, begin building a standalone iPhone app.
 
 The next post discusses step 1, and the lessons learned from it.

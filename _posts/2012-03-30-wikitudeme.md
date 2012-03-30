@@ -1,13 +1,14 @@
 ---
 layout: post
-title: "wikitude.me"
+title: "2. wikitude.me"
 description: "First steps, using the wikitude.me service."
 category: archie
 tags: []
+date: 2012-03-30 12:00:00
 ---
 {% include JB/setup %}
 
-The first step I took was to use the wikitude.me community platform (http://wikitude.me) to place some points in the wikitude.me World. That put me in a position to do some very basic evaluation as regards broad user experience issues. The whole process took less than a day, and the results were useful:
+The first step I took was to use the [wikitude.me](http://wikitude.me) community platform to place some points in the wikitude.me World. That put me in a position to do some very basic evaluation as regards broad user experience issues. The whole process took less than a day, and the results were useful:
 
 - It was immediately apparent that there was potential for confusion if icons in the map and camera views were to be used as waypoints (they tended to cluster together and overlap each other), so icon types would have to be easily distinguishable and ordered so that following waypoints didn't overlay preceding ones.
 
