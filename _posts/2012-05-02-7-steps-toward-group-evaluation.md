@@ -12,7 +12,7 @@ The work so far has been to get to a point, without committing serious time to p
 
 The Scottish historical resource [SCRAN](http://www.scran.ac.uk/) presented a vast repository of images of Glasgow and the surrounding regions, free for academic use. In the interest of keeping an evaluative walk relatively short, and in placing as much interesting information in the app as possible, I concentrated on the remains of mills lining the River Kelvin on the first stretch of the walk.
 
-![North Kelvin Flint Mill](/assets/images/TGSE01306_m.jpg)
+![North Kelvin Flint Mill]({{ BASE_PATH }}/assets/images/TGSE01306_m.jpg)
 
 Image and text attachments could now be added to the relevant POIs, becoming available when a curious user clicked on a POI icon in the display.
 
