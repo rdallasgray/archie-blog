@@ -7,14 +7,16 @@ tagline: Augmented Reality for Cultural Heritage Interpretation and Education
 
 <h4>This is a blog documenting the development of my MSc project, an augmented reality iPhone app to encourage <br>walking visits to the Antonine Wall. It was built using Jekyll Bootstrap.</h4>
 
-  {% for post in site.posts %}
-  <hr>
+
+{% for post in site.posts limit:2 %}
+<hr>
   <div class="row">
     <div class="span8">
-    <div class="date"></div>
-    <h3><a href= "{{ BASE_PATH }}{{ post.url }}">{{ post.title }} <small>{{ post.description }}</small></a></h3>
+      <div class="date"></div>
+      <h3><a href= "{{ BASE_PATH }}{{ post.url }}">{{ post.title }} <small>{{ post.description }}</small></a></h3>
       {{ post.content }}
     </div>
     <div class="span2 light">Posted {{ post.date | date_to_long_string }}</div>
   </div>
   {% endfor %}
+

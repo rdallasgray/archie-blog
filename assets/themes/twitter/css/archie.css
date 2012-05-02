@@ -11,3 +11,12 @@ h4 {
 .light {
     color: #ccc;
 }
+
+code {
+    color:rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+}
+
+img {
+    margin: 1px;
+}

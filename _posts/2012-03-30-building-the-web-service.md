@@ -33,4 +33,4 @@ Once I had a local PostgreS, things went a bit more smoothly, although it took m
 All in, it took about three hours to get the service from scratch to running and serving ARML.
 
 ####Next
-Building out the web service.
+More details.
