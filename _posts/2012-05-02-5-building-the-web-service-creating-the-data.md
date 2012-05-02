@@ -33,10 +33,10 @@ class Poi(db.Model):
 
 It can then be incorporated into an ARML template using the [Jinja2](http://jinja.pocoo.org/docs/) template engine. Settings for the World itself can be hardcoded in the template or (as I've done) set up in a the config file for the app.
 
-The points of interest were derived from the points that had previously been added to the Wikitude.me service (see [here] (/archie/2012/03/30/wikitudeme/)).
+The points of interest were derived from the points that had previously been added to the Wikitude.me service.
 
-<img src="/assets/images/IMG_0227.PNG" width="49%"/>
-<img src="/assets/images/IMG_0228.PNG" width="49%"/>
+<img src="{{ BASE_PATH }}/assets/images/IMG_0227.PNG" width="49%"/>
+<img src="{{ BASE_PATH }}/assets/images/IMG_0228.PNG" width="49%"/>
 
 As well as co-ordinates, points were given names and descriptions which appear when clicked on in either the map or cam interfaces. Further formative evaluation followed, confirming some issues and raising new ones. It was still difficult to actually follow a path through the POIs in the map. Labels were too short to be useful, and the lack of distinguishing features made them difficult to tell apart.
 

@@ -26,7 +26,7 @@ This put me in a position to do some very basic evaluation as regards broad user
 
 - Icon labels in the cam display are very short (only a few letters). There needs to be a way to maximise the amount of information the icons convey between the icon itself and the label.
 
-<img src="/assets/images/IMG_0209.PNG"/>
+<img src="{{ BASE_PATH }}/assets/images/IMG_0209.PNG"/>
 
 ####Next
 Creating the web service to serve ARML to Wikitude.

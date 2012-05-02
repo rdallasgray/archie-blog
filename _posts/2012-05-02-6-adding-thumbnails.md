@@ -16,10 +16,10 @@ It also seemed apparent that not all POIs were in fact waypoints, so fields were
 
 The icons were designed to give simple indications of these two pieces of information.
 
-![Icons in the Wikitude interface](/assets/images/IMG_0252.PNG)
+![Icons in the Wikitude interface](/{{ BASE_PATH }}assets/images/IMG_0252.PNG)
 
 Labels on the icons were still not terribly useful. They tended to get cut off before they had really said anything, so they were shortened to absolute bare-bones, giving the user an indication of the object they should be looking for, but relying on the longer POI description for fuller information.
 
-![Shorter icon names in use](/assets/images/IMG_0268.PNG)
+![Shorter icon names in use]({{ BASE_PATH }}/assets/images/IMG_0268.PNG)
 
 There were still issues with the placement of POIs in the display -- the map display seemed accurate, but in the cam display there was a distinct bias to the north, and apparent issues with altitude (POIs appearing in the sky, for instance ...).

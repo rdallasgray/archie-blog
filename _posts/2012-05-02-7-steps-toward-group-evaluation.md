@@ -16,8 +16,8 @@ The Scottish historical resource [SCRAN](http://www.scran.ac.uk/) presented a va
 
 Image and text attachments could now be added to the relevant POIs, becoming available when a curious user clicked on a POI icon in the display.
 
-<img src="/assets/images/WT_Asset_View_2.PNG" width="49%"/>
-<img src="/assets/images/WT_Asset_View.PNG" width="49%"/>
+<img src="{{ BASE_PATH }}/assets/images/WT_Asset_View_2.PNG" width="49%"/>
+<img src="{{ BASE_PATH }}/assets/images/WT_Asset_View.PNG" width="49%"/>
 
 With a little tweaking, the webservice will be ready for an initial group evaluation.
 
