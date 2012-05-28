@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>ARCHIE</title>
+ <link href="http://rdallasgray.github.com/archie-blog/atom.xml" rel="self"/>
+ <link href="http://rdallasgray.github.com/archie-blog"/>
+ <updated>2012-05-28T16:20:58+01:00</updated>
+ <id>http://rdallasgray.github.com/archie-blog</id>
+ <author>
+   <name>Robert Dallas Gray</name>
+   <email>archie@robertdallasgray.com</email>
+ </author>
+
+ 
+ <entry>
+   <title>7. Steps toward group evaluation</title>
+   <link href="http://rdallasgray.github.com/archie-blog/archie/2012/05/02/7-steps-toward-group-evaluation"/>
+   <updated>2012-05-02T14:35:13+01:00</updated>
+   <id>http://rdallasgray.github.com/archie-blog/archie/2012/05/02/7-steps-toward-group-evaluation</id>
+   <content type="html">&lt;p&gt;The work so far has been to get to a point, without committing serious time to programming, at which a proper formative evaluation could be done, in the field, with a group of users. It would be best that users could be given a task to accomplish (walk to a particular location, for example) and then left to it, and that there should be some interest in using the app &lt;em&gt;per se&lt;/em&gt;; so the next task would be to structure the set of POIs, and add media to the app, so that the walk, or some part of it, would actually be made more interesting.&lt;/p&gt;
+
+&lt;p&gt;The Scottish historical resource &lt;a href='http://www.scran.ac.uk/'&gt;SCRAN&lt;/a&gt; presented a vast repository of images of Glasgow and the surrounding regions, free for academic use. In the interest of keeping an evaluative walk relatively short, and in placing as much interesting information in the app as possible, I concentrated on the remains of mills lining the River Kelvin on the first stretch of the walk.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt='North Kelvin Flint Mill' src='/assets/images/TGSE01306_m.jpg' /&gt;&lt;/p&gt;
+
+&lt;p&gt;Image and text attachments could now be added to the relevant POIs, becoming available when a curious user clicked on a POI icon in the display.&lt;/p&gt;
+&lt;img src='/assets/images/WT_Asset_View_2.PNG' width='49%' /&gt;&lt;img src='/assets/images/WT_Asset_View.PNG' width='49%' /&gt;
+&lt;p&gt;With a little tweaking, the webservice will be ready for an initial group evaluation.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>6. Adding thumbnails</title>
+   <link href="http://rdallasgray.github.com/archie-blog/archie/2012/05/02/6-adding-thumbnails"/>
+   <updated>2012-05-02T14:03:44+01:00</updated>
+   <id>http://rdallasgray.github.com/archie-blog/archie/2012/05/02/6-adding-thumbnails</id>
+   <content type="html">&lt;p&gt;The first advantage of using an ARML-fed webservice over the Wikitude.me community service is the facility to assign thumbnails individually to POIs. This would be the first step in addressing the issue of pathfinding using the map and cam interfaces.&lt;/p&gt;
+
+&lt;p&gt;The first issue was to somehow inform the user about the &lt;em&gt;order&lt;/em&gt; of the waypoints on the walk. Numbering the POIs seemed the sensible way to do this; numbering the POI names had worked very basically, but the names were not immediately visible in the map interface.&lt;/p&gt;
+
+&lt;p&gt;It also seemed apparent that not all POIs were in fact waypoints, so fields were added to the POI model to indicate the &lt;em&gt;type&lt;/em&gt; of the POI and its &lt;em&gt;waypoint number&lt;/em&gt; (which could be null).&lt;/p&gt;
+
+&lt;p&gt;The icons were designed to give simple indications of these two pieces of information.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt='Icons in the Wikitude interface' src='/assets/images/IMG_0252.PNG' /&gt;&lt;/p&gt;
+
+&lt;p&gt;Labels on the icons were still not terribly useful. They tended to get cut off before they had really said anything, so they were shortened to absolute bare-bones, giving the user an indication of the object they should be looking for, but relying on the longer POI description for fuller information.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt='Shorter icon names in use' src='/assets/images/IMG_0268.PNG' /&gt;&lt;/p&gt;
+
+&lt;p&gt;There were still issues with the placement of POIs in the display &amp;#8211; the map display seemed accurate, but in the cam display there was a distinct bias to the north, and apparent issues with altitude (POIs appearing in the sky, for instance &amp;#8230;).&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>5. Building the Web Service: Creating the data</title>
+   <link href="http://rdallasgray.github.com/archie-blog/archie/2012/05/02/5-building-the-web-service-creating-the-data"/>
+   <updated>2012-05-02T10:17:23+01:00</updated>
+   <id>http://rdallasgray.github.com/archie-blog/archie/2012/05/02/5-building-the-web-service-creating-the-data</id>
+   <content type="html">&lt;p&gt;All the Archie webservice needs to do is provide a feed of ARML data to Wikitude&amp;#8217;s servers; the feed is used to define and place points of interest within a &amp;#8216;World&amp;#8217; which will be available in the Wikitude phone app.&lt;/p&gt;
+
+&lt;p&gt;To make things simple and maintainable, it makes sense to define data models for the points of interest (and their media attachments, eventually). These can be used within a view template to complete the ARML feed.&lt;/p&gt;
+
+&lt;p&gt;Flask has bindings to &lt;a href='http://packages.python.org/Flask-SQLAlchemy/'&gt;SQLAlchemy&lt;/a&gt; to provide simple and usable ORM functionality. Here&amp;#8217;s how the point-of-interest model was created:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='python'&gt;&lt;span class='kn'&gt;from&lt;/span&gt; &lt;span class='nn'&gt;archie&lt;/span&gt; &lt;span class='kn'&gt;import&lt;/span&gt; &lt;span class='n'&gt;db&lt;/span&gt;
+
+&lt;span class='k'&gt;class&lt;/span&gt; &lt;span class='nc'&gt;Poi&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;db&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;Model&lt;/span&gt;&lt;span class='p'&gt;):&lt;/span&gt;
+    &lt;span class='nb'&gt;id&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;db&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;Column&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;db&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;Integer&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;primary_key&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;&lt;span class='bp'&gt;True&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+    &lt;span class='n'&gt;name&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;db&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;Column&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;db&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;String&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;255&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+    &lt;span class='n'&gt;description&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;db&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;Column&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;db&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;String&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;255&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+    &lt;span class='nb'&gt;type&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;db&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;Column&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;db&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;String&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;255&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+    &lt;span class='n'&gt;waypoint_number&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;db&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;Column&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;db&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;String&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;255&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+    &lt;span class='n'&gt;co_ordinates&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;db&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;Column&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;db&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;String&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;255&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+    &lt;span class='n'&gt;thumbnail&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;db&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;Column&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;db&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;String&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;255&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+    &lt;span class='n'&gt;hi_res_image_url&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;db&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;Column&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;db&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;String&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;255&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+    &lt;span class='n'&gt;marker_icon_url&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;db&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;Column&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;db&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;String&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;255&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+    
+    &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;__repr__&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='bp'&gt;self&lt;/span&gt;&lt;span class='p'&gt;):&lt;/span&gt;
+        &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='s'&gt;&amp;#39;&amp;lt;Poi &lt;/span&gt;&lt;span class='si'&gt;%s&lt;/span&gt;&lt;span class='s'&gt;&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class='o'&gt;%&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='bp'&gt;self&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;name&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;It can then be incorporated into an ARML template using the &lt;a href='http://jinja.pocoo.org/docs/'&gt;Jinja2&lt;/a&gt; template engine. Settings for the World itself can be hardcoded in the template or (as I&amp;#8217;ve done) set up in a the config file for the app.&lt;/p&gt;
+
+&lt;p&gt;The points of interest were derived from the points that had previously been added to the Wikitude.me service.&lt;/p&gt;
+&lt;img src='/assets/images/IMG_0227.PNG' width='49%' /&gt;&lt;img src='/assets/images/IMG_0228.PNG' width='49%' /&gt;
+&lt;p&gt;As well as co-ordinates, points were given names and descriptions which appear when clicked on in either the map or cam interfaces. Further formative evaluation followed, confirming some issues and raising new ones. It was still difficult to actually follow a path through the POIs in the map. Labels were too short to be useful, and the lack of distinguishing features made them difficult to tell apart.&lt;/p&gt;
+
+&lt;h4 id='next_adding_thumbnails'&gt;Next: Adding thumbnails&lt;/h4&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>4. Building the Web Service: Details</title>
+   <link href="http://rdallasgray.github.com/archie-blog/archie/2012/05/02/4-building-the-web-service-details"/>
+   <updated>2012-05-02T09:51:56+01:00</updated>
+   <id>http://rdallasgray.github.com/archie-blog/archie/2012/05/02/4-building-the-web-service-details</id>
+   <content type="html">&lt;h4 id='deploying_to_and_running_on_heroku'&gt;Deploying to and running on Heroku&lt;/h4&gt;
+
+&lt;p&gt;Heroku uses a number of small tools to make development and deployment easier; first we have to install the &lt;a href='http://devcenter.heroku.com/categories/command-line'&gt;Heroku command line tools&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;When using Python, dependency management is done using &lt;a href='http://pypi.python.org/pypi/virtualenv'&gt;virtualenv&lt;/a&gt; and &lt;a href='http://pypi.python.org/pypi/pip'&gt;pip&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Virtualenv creates (as you might guess) a virtual enviroment for running Python applications; all dependencies, including the necessary version of Python itself, exist within this environment.&lt;/p&gt;
+
+&lt;p&gt;Pip is used to install and manage dependencies; when using virtualenv, dependency management takes place within the virtual environment. Dependencies, once installed, can be frozen and listed by doing&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+pip freeze &amp;gt; requirements.txt
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;which writes the list of dependencies to a text file.&lt;/p&gt;
+
+&lt;p&gt;Once dependencies are taken care of, we next need to tell Heroku how to run our app. This is done by creating a &lt;a href='https://devcenter.heroku.com/articles/procfile'&gt;Procfile&lt;/a&gt;. The app can then be run using the Ruby tool &lt;a href='http://blog.daviddollar.org/2011/05/06/introducing-foreman.html'&gt;Foreman&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Storing the whole shebang in a git repository, we create the application stack on Heroku:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+heroku create --stack cedar
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This will also create a git remote called &lt;strong&gt;heroku&lt;/strong&gt; &amp;#8211; so it&amp;#8217;s now simple to push the app to the cloud. Automatically-installed git hooks ensure the app is started as soon as the push is completed. Its state can then be checked by doing&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+heroku ps
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;and any problems traced using&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+heroku logs
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id='next'&gt;Next&lt;/h4&gt;
+
+&lt;p&gt;Creating the data.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>3. Building the web service</title>
+   <link href="http://rdallasgray.github.com/archie-blog/archie/2012/03/30/building-the-web-service"/>
+   <updated>2012-03-30T17:00:00+01:00</updated>
+   <id>http://rdallasgray.github.com/archie-blog/archie/2012/03/30/building-the-web-service</id>
+   <content type="html">&lt;p&gt;The next rung on the Wikitude ladder is Wikitude Worlds, which offers two broad publishing options:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Use their &lt;a href='http://www.wikitude.com/developer/architect'&gt;ARchitect Engine&lt;/a&gt; to create a simple interface using HTML and CSS, or&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Provide &lt;a href='http://openarml.org'&gt;ARML&lt;/a&gt;, either by uploading a static file or dynamically by means of a web service.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Option 1 would offer more flexibility, but would be quite time consuming, and the end result would still have to run inside Wikitude&amp;#8217;s World Browser app; option 2 offered much shorter development turnaround, and allowed for custom icons for points of interest, as well as links to attached media. This would enable me to get to a next round of useful evaluation much more quickly.&lt;/p&gt;
+
+&lt;h4 id='platform'&gt;Platform&lt;/h4&gt;
+
+&lt;p&gt;The next decisions to make were more interesting: where to host the webservice, and what platform to develop it on. For a while I entertained the idea of writing it in Java, just for the sake of the experience, but came to my senses reasonably quickly. Having little experience with Python, I decided to use the opportunity to learn some, and chose the &lt;a href='http://flask.pocoo.org'&gt;Flask framework&lt;/a&gt;. Flask is a microframework in the vein of web.py and Sinatra, and seemed apt to the task.&lt;/p&gt;
+
+&lt;p&gt;For hosting, I looked at Google Apps, EC2 and Heroku. I already have an EC2 account, so I wouldn&amp;#8217;t be eligible for the free level of service; Google Apps looked needlessly complex. So Heroku it was.&lt;/p&gt;
+
+&lt;h4 id='getting_it_running'&gt;Getting it running&lt;/h4&gt;
+
+&lt;p&gt;Heroku had some &lt;a href='https://devcenter.heroku.com/articles/python'&gt;helpful documentation&lt;/a&gt; on getting a simple Flask app running, and I had things working reasonably quickly. An initial stumbling block was the database: I&amp;#8217;d intended to use SQLite, but Heroku doesn&amp;#8217;t seem to properly persist file-based data (there is effectively no file system).&lt;/p&gt;
+
+&lt;h4 id='the_database'&gt;The database&lt;/h4&gt;
+
+&lt;p&gt;Heroku&amp;#8217;s native RDBMS is PostgreSQL. It&amp;#8217;s supposed to be simple enough to transfer the contents of a local SQLite db upstream to their PostgreS, but I had trouble doing it in the Python environment &amp;#8211; it seemed set up to cater to Rails. So I decided the path of least resistance was to set up PostgreS on my local machine (a Mac running OS X 10.7). This wasn&amp;#8217;t simple, but luckily I&amp;#8217;d done it not long before in order to get access to &lt;a href='http://postgis.refractions.net'&gt;PostGIS&lt;/a&gt;, which I needed to get OpenStreetmap data into &lt;a href='http://mapbox.com/tilemill'&gt;TileMill&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Once I had a local PostgreS, things went a bit more smoothly, although it took me a while to figure out how to access Heroku&amp;#8217;s db (the url to the database is only available through an environment variable, which is actually quite smart &amp;#8211; no storing usernames, passwords and hostnames in config files).&lt;/p&gt;
+
+&lt;p&gt;All in, it took about three hours to get the service from scratch to running and serving ARML.&lt;/p&gt;
+
+&lt;h4 id='next'&gt;Next&lt;/h4&gt;
+
+&lt;p&gt;More details.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>2. wikitude.me</title>
+   <link href="http://rdallasgray.github.com/archie-blog/archie/2012/03/30/wikitudeme"/>
+   <updated>2012-03-30T12:00:00+01:00</updated>
+   <id>http://rdallasgray.github.com/archie-blog/archie/2012/03/30/wikitudeme</id>
+   <content type="html">&lt;p&gt;The first step I took was to use the &lt;a href='http://wikitude.me'&gt;wikitude.me&lt;/a&gt; community platform to place some points in the wikitude.me World. The whole process took less than a day, and the results were useful. Initially about 30 points of interest were added, charting the path of the walk.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt='The walk on Wikitude.me' src='/assets/images/Screenshot_1.png' /&gt;&lt;/p&gt;
+
+&lt;p&gt;This put me in a position to do some very basic evaluation as regards broad user experience issues:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;It was immediately apparent that there was potential for confusion if icons in the map and camera views were to be used as waypoints (they tended to cluster together and overlap each other), so icon types would have to be easily distinguishable and ordered so that following waypoints didn&amp;#8217;t overlay preceding ones.&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;The app changed the size of icons slightly to indicate relative distance, but it wasn&amp;#8217;t that effective. Transparency would probably be more useful.&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;An indicator showing the next waypoint on the walk would be useful, and/or a list of nearby points of interest.&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;The accuracy of the placemarking could be inferred (appearing to be about 5&amp;#8211;10m), and a certainly squirreliness was noted (icons tended to jump around in the cam display &amp;#8211; this has since been improved by updates to the Wikitude app).&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Icon labels in the cam display are very short (only a few letters). There needs to be a way to maximise the amount of information the icons convey between the icon itself and the label.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img src='/assets/images/IMG_0209.PNG' /&gt;
+&lt;h4 id='next'&gt;Next&lt;/h4&gt;
+
+&lt;p&gt;Creating the web service to serve ARML to Wikitude.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>1. Background</title>
+   <link href="http://rdallasgray.github.com/archie-blog/archie/2012/03/30/background"/>
+   <updated>2012-03-30T11:00:00+01:00</updated>
+   <id>http://rdallasgray.github.com/archie-blog/archie/2012/03/30/background</id>
+   <content type="html">&lt;h4 id='the_project'&gt;The Project&lt;/h4&gt;
+
+&lt;p&gt;I&amp;#8217;m using this blog to document the development of my MSc project, in the hope that I can note down enough here to a) have a reasonable head-start on writing up the dissertation when the time comes, b) remember the various hoops I&amp;#8217;ve had to jump through to get things done and c) perhaps have some utility to anyone else who chances on it.&lt;/p&gt;
+
+&lt;p&gt;The project itself is to develop a prototype augmented reality smartphone app to encourage walking visits to the Antonine Wall. The Antonine Wall is the northernmost fortification of the Roman Empire, and stretches from the Firth of Clyde to the Firth of Forth in central Scotland. It&amp;#8217;s mostly not very interesting to the layperson &amp;#8211; not much remains of the wall or fortlets along it &amp;#8211; hence the suggested use of augmented reality techniques to try to give some sense of why it &lt;em&gt;is&lt;/em&gt; interesting to archaeologists, historians etc.&lt;/p&gt;
+
+&lt;p&gt;I didn&amp;#8217;t create the project myself; I chose it from a list, based partly on my keenness to get to grips with smartphone programming, and partly on the fact that the project offered the opportunity to go on long walks out of the city.&lt;/p&gt;
+
+&lt;h4 id='proposal'&gt;Proposal&lt;/h4&gt;
+
+&lt;p&gt;I completed the proposal for the project almost exactly a year ago today (I&amp;#8217;m a part-time student, so my workload is split over two academic years). The proposal looked at other similar projects and at the general rise in use of technology in cultural heritage contexts. Following research I opted to use Wikitude as the base platform for the application, as it offered a nicely graded path from a very simple but evaluable interface to a standalone application.&lt;/p&gt;
+
+&lt;h4 id='approach'&gt;Approach&lt;/h4&gt;
+
+&lt;p&gt;My project advisor, learning that I liked long-distance walking, assigned me a route out of Glasgow city centre to Cadder and back &amp;#8211; around 16 miles. About the mid-point of the walk, the remains of two Antonine Wall fortlets would be encountered, with various other sites of interest along the way.&lt;/p&gt;
+
+&lt;p&gt;The Wikitude platform would be used as the backbone of a short-cycle iterative process, the overall structure being:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Use the &lt;a href='http://wikitude.me'&gt;wikitude.me service&lt;/a&gt; to place points of interest in the wikutde.me World. These would then be visible on both the map and camera views of the Wikitude iPhone app, enabling simple evaluation.&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Building on the results of the previous step&amp;#8217;s evaluation, carry over the points of interest into a web service providing an &lt;a href='http://openarml.org'&gt;ARML feed&lt;/a&gt; to Wikitude. This would allow points to be given custom icons, and have media attached to them. Further and more detailed evaluation could then be undertaken.&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Using &lt;a href='http://www.wikitude.com/developer/documentation/wikitude-sdk'&gt;Wikitude&amp;#8217;s SDK&lt;/a&gt;, and working from the previous evaluations, begin building a standalone iPhone app.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id='next'&gt;Next&lt;/h4&gt;
+
+&lt;p&gt;Step 1, and the lessons learned from it.&lt;/p&gt;</content>
+ </entry>
+ 
+ 
+</feed>

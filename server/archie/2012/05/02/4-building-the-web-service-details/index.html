@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>4. Building the Web Service: Details</title>
+    <meta name="description" content="venv, pip, foreman, etc.">
+    <meta name="author" content="Robert Dallas Gray">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/twitter/css/archie.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/twitter/css/pygments.css" rel="stylesheet" type="text/css" media="all">
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">ARCHIE</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/pages.html">Pages</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        
+<div class="page-header">
+  <h1>4. Building the Web Service: Details <small>venv, pip, foreman, etc.</small></h1>
+</div>
+
+<div class="row">
+  <div class="span8">
+    <h4 id='deploying_to_and_running_on_heroku'>Deploying to and running on Heroku</h4>
+
+<p>Heroku uses a number of small tools to make development and deployment easier; first we have to install the <a href='http://devcenter.heroku.com/categories/command-line'>Heroku command line tools</a>.</p>
+
+<p>When using Python, dependency management is done using <a href='http://pypi.python.org/pypi/virtualenv'>virtualenv</a> and <a href='http://pypi.python.org/pypi/pip'>pip</a>.</p>
+
+<p>Virtualenv creates (as you might guess) a virtual enviroment for running Python applications; all dependencies, including the necessary version of Python itself, exist within this environment.</p>
+
+<p>Pip is used to install and manage dependencies; when using virtualenv, dependency management takes place within the virtual environment. Dependencies, once installed, can be frozen and listed by doing</p>
+
+<p><code>
+pip freeze &gt; requirements.txt
+</code></p>
+
+<p>which writes the list of dependencies to a text file.</p>
+
+<p>Once dependencies are taken care of, we next need to tell Heroku how to run our app. This is done by creating a <a href='https://devcenter.heroku.com/articles/procfile'>Procfile</a>. The app can then be run using the Ruby tool <a href='http://blog.daviddollar.org/2011/05/06/introducing-foreman.html'>Foreman</a>.</p>
+
+<p>Storing the whole shebang in a git repository, we create the application stack on Heroku:</p>
+
+<p><code>
+heroku create --stack cedar
+</code></p>
+
+<p>This will also create a git remote called <strong>heroku</strong> &#8211; so it&#8217;s now simple to push the app to the cloud. Automatically-installed git hooks ensure the app is started as soon as the push is completed. Its state can then be checked by doing</p>
+
+<p><code>
+heroku ps
+</code></p>
+
+<p>and any problems traced using</p>
+
+<p><code>
+heroku logs
+</code></p>
+
+<h4 id='next'>Next</h4>
+
+<p>Creating the data.</p>
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev"><a href="/archie/2012/03/30/building-the-web-service" title="3. Building the web service">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next"><a href="/archie/2012/05/02/5-building-the-web-service-creating-the-data" title="5. Building the Web Service: Creating the data">Next &rarr;</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+    
+  </div>
+  
+  <div class="span4">
+    <h4>Published</h4>
+    <div class="date"><span>02 May 2012</span></div>
+
+    
+  </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy; Robert Dallas Gray 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+  </body>
+</html>
+

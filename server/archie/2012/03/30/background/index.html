@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>1. Background</title>
+    <meta name="description" content="A bit of background on the project.">
+    <meta name="author" content="Robert Dallas Gray">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/twitter/css/archie.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/twitter/css/pygments.css" rel="stylesheet" type="text/css" media="all">
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">ARCHIE</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/pages.html">Pages</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        
+<div class="page-header">
+  <h1>1. Background <small>A bit of background on the project.</small></h1>
+</div>
+
+<div class="row">
+  <div class="span8">
+    <h4 id='the_project'>The Project</h4>
+
+<p>I&#8217;m using this blog to document the development of my MSc project, in the hope that I can note down enough here to a) have a reasonable head-start on writing up the dissertation when the time comes, b) remember the various hoops I&#8217;ve had to jump through to get things done and c) perhaps have some utility to anyone else who chances on it.</p>
+
+<p>The project itself is to develop a prototype augmented reality smartphone app to encourage walking visits to the Antonine Wall. The Antonine Wall is the northernmost fortification of the Roman Empire, and stretches from the Firth of Clyde to the Firth of Forth in central Scotland. It&#8217;s mostly not very interesting to the layperson &#8211; not much remains of the wall or fortlets along it &#8211; hence the suggested use of augmented reality techniques to try to give some sense of why it <em>is</em> interesting to archaeologists, historians etc.</p>
+
+<p>I didn&#8217;t create the project myself; I chose it from a list, based partly on my keenness to get to grips with smartphone programming, and partly on the fact that the project offered the opportunity to go on long walks out of the city.</p>
+
+<h4 id='proposal'>Proposal</h4>
+
+<p>I completed the proposal for the project almost exactly a year ago today (I&#8217;m a part-time student, so my workload is split over two academic years). The proposal looked at other similar projects and at the general rise in use of technology in cultural heritage contexts. Following research I opted to use Wikitude as the base platform for the application, as it offered a nicely graded path from a very simple but evaluable interface to a standalone application.</p>
+
+<h4 id='approach'>Approach</h4>
+
+<p>My project advisor, learning that I liked long-distance walking, assigned me a route out of Glasgow city centre to Cadder and back &#8211; around 16 miles. About the mid-point of the walk, the remains of two Antonine Wall fortlets would be encountered, with various other sites of interest along the way.</p>
+
+<p>The Wikitude platform would be used as the backbone of a short-cycle iterative process, the overall structure being:</p>
+
+<ol>
+<li>
+<p>Use the <a href='http://wikitude.me'>wikitude.me service</a> to place points of interest in the wikutde.me World. These would then be visible on both the map and camera views of the Wikitude iPhone app, enabling simple evaluation.</p>
+</li>
+
+<li>
+<p>Building on the results of the previous step&#8217;s evaluation, carry over the points of interest into a web service providing an <a href='http://openarml.org'>ARML feed</a> to Wikitude. This would allow points to be given custom icons, and have media attached to them. Further and more detailed evaluation could then be undertaken.</p>
+</li>
+
+<li>
+<p>Using <a href='http://www.wikitude.com/developer/documentation/wikitude-sdk'>Wikitude&#8217;s SDK</a>, and working from the previous evaluations, begin building a standalone iPhone app.</p>
+</li>
+</ol>
+
+<h4 id='next'>Next</h4>
+
+<p>Step 1, and the lessons learned from it.</p>
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev disabled"><a>&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next"><a href="/archie/2012/03/30/wikitudeme" title="2. wikitude.me">Next &rarr;</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+    
+  </div>
+  
+  <div class="span4">
+    <h4>Published</h4>
+    <div class="date"><span>30 March 2012</span></div>
+
+    
+  </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy; Robert Dallas Gray 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+  </body>
+</html>
+

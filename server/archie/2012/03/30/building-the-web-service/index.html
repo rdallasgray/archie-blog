@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>3. Building the web service</title>
+    <meta name="description" content="Generating ARML">
+    <meta name="author" content="Robert Dallas Gray">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/twitter/css/archie.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/twitter/css/pygments.css" rel="stylesheet" type="text/css" media="all">
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">ARCHIE</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/pages.html">Pages</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        
+<div class="page-header">
+  <h1>3. Building the web service <small>Generating ARML</small></h1>
+</div>
+
+<div class="row">
+  <div class="span8">
+    <p>The next rung on the Wikitude ladder is Wikitude Worlds, which offers two broad publishing options:</p>
+
+<ol>
+<li>
+<p>Use their <a href='http://www.wikitude.com/developer/architect'>ARchitect Engine</a> to create a simple interface using HTML and CSS, or</p>
+</li>
+
+<li>
+<p>Provide <a href='http://openarml.org'>ARML</a>, either by uploading a static file or dynamically by means of a web service.</p>
+</li>
+</ol>
+
+<p>Option 1 would offer more flexibility, but would be quite time consuming, and the end result would still have to run inside Wikitude&#8217;s World Browser app; option 2 offered much shorter development turnaround, and allowed for custom icons for points of interest, as well as links to attached media. This would enable me to get to a next round of useful evaluation much more quickly.</p>
+
+<h4 id='platform'>Platform</h4>
+
+<p>The next decisions to make were more interesting: where to host the webservice, and what platform to develop it on. For a while I entertained the idea of writing it in Java, just for the sake of the experience, but came to my senses reasonably quickly. Having little experience with Python, I decided to use the opportunity to learn some, and chose the <a href='http://flask.pocoo.org'>Flask framework</a>. Flask is a microframework in the vein of web.py and Sinatra, and seemed apt to the task.</p>
+
+<p>For hosting, I looked at Google Apps, EC2 and Heroku. I already have an EC2 account, so I wouldn&#8217;t be eligible for the free level of service; Google Apps looked needlessly complex. So Heroku it was.</p>
+
+<h4 id='getting_it_running'>Getting it running</h4>
+
+<p>Heroku had some <a href='https://devcenter.heroku.com/articles/python'>helpful documentation</a> on getting a simple Flask app running, and I had things working reasonably quickly. An initial stumbling block was the database: I&#8217;d intended to use SQLite, but Heroku doesn&#8217;t seem to properly persist file-based data (there is effectively no file system).</p>
+
+<h4 id='the_database'>The database</h4>
+
+<p>Heroku&#8217;s native RDBMS is PostgreSQL. It&#8217;s supposed to be simple enough to transfer the contents of a local SQLite db upstream to their PostgreS, but I had trouble doing it in the Python environment &#8211; it seemed set up to cater to Rails. So I decided the path of least resistance was to set up PostgreS on my local machine (a Mac running OS X 10.7). This wasn&#8217;t simple, but luckily I&#8217;d done it not long before in order to get access to <a href='http://postgis.refractions.net'>PostGIS</a>, which I needed to get OpenStreetmap data into <a href='http://mapbox.com/tilemill'>TileMill</a>.</p>
+
+<p>Once I had a local PostgreS, things went a bit more smoothly, although it took me a while to figure out how to access Heroku&#8217;s db (the url to the database is only available through an environment variable, which is actually quite smart &#8211; no storing usernames, passwords and hostnames in config files).</p>
+
+<p>All in, it took about three hours to get the service from scratch to running and serving ARML.</p>
+
+<h4 id='next'>Next</h4>
+
+<p>More details.</p>
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev"><a href="/archie/2012/03/30/wikitudeme" title="2. wikitude.me">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next"><a href="/archie/2012/05/02/4-building-the-web-service-details" title="4. Building the Web Service: Details">Next &rarr;</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+    
+  </div>
+  
+  <div class="span4">
+    <h4>Published</h4>
+    <div class="date"><span>30 March 2012</span></div>
+
+    
+  </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy; Robert Dallas Gray 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,16 @@
+
+http://rdallasgray.github.com/archie-blog/archive.html
+http://rdallasgray.github.com/archie-blog/atom.xml
+http://rdallasgray.github.com/archie-blog/categories.html
+http://rdallasgray.github.com/archie-blog/index.html
+http://rdallasgray.github.com/archie-blog/pages.html
+http://rdallasgray.github.com/archie-blog/sitemap.txt
+http://rdallasgray.github.com/archie-blog/tags.html
+
+http://rdallasgray.github.com/archie-blog/archie/2012/05/02/7-steps-toward-group-evaluation
+http://rdallasgray.github.com/archie-blog/archie/2012/05/02/6-adding-thumbnails
+http://rdallasgray.github.com/archie-blog/archie/2012/05/02/5-building-the-web-service-creating-the-data
+http://rdallasgray.github.com/archie-blog/archie/2012/05/02/4-building-the-web-service-details
+http://rdallasgray.github.com/archie-blog/archie/2012/03/30/building-the-web-service
+http://rdallasgray.github.com/archie-blog/archie/2012/03/30/wikitudeme
+http://rdallasgray.github.com/archie-blog/archie/2012/03/30/background

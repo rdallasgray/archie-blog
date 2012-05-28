@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>5. Building the Web Service: Creating the data</title>
+    <meta name="description" content="SQLAlchemy, models, templates">
+    <meta name="author" content="Robert Dallas Gray">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/twitter/css/archie.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/twitter/css/pygments.css" rel="stylesheet" type="text/css" media="all">
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">ARCHIE</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/pages.html">Pages</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        
+<div class="page-header">
+  <h1>5. Building the Web Service: Creating the data <small>SQLAlchemy, models, templates</small></h1>
+</div>
+
+<div class="row">
+  <div class="span8">
+    <p>All the Archie webservice needs to do is provide a feed of ARML data to Wikitude&#8217;s servers; the feed is used to define and place points of interest within a &#8216;World&#8217; which will be available in the Wikitude phone app.</p>
+
+<p>To make things simple and maintainable, it makes sense to define data models for the points of interest (and their media attachments, eventually). These can be used within a view template to complete the ARML feed.</p>
+
+<p>Flask has bindings to <a href='http://packages.python.org/Flask-SQLAlchemy/'>SQLAlchemy</a> to provide simple and usable ORM functionality. Here&#8217;s how the point-of-interest model was created:</p>
+<div class='highlight'><pre><code class='python'><span class='kn'>from</span> <span class='nn'>archie</span> <span class='kn'>import</span> <span class='n'>db</span>
+
+<span class='k'>class</span> <span class='nc'>Poi</span><span class='p'>(</span><span class='n'>db</span><span class='o'>.</span><span class='n'>Model</span><span class='p'>):</span>
+    <span class='nb'>id</span> <span class='o'>=</span> <span class='n'>db</span><span class='o'>.</span><span class='n'>Column</span><span class='p'>(</span><span class='n'>db</span><span class='o'>.</span><span class='n'>Integer</span><span class='p'>,</span> <span class='n'>primary_key</span><span class='o'>=</span><span class='bp'>True</span><span class='p'>)</span>
+    <span class='n'>name</span> <span class='o'>=</span> <span class='n'>db</span><span class='o'>.</span><span class='n'>Column</span><span class='p'>(</span><span class='n'>db</span><span class='o'>.</span><span class='n'>String</span><span class='p'>(</span><span class='mi'>255</span><span class='p'>))</span>
+    <span class='n'>description</span> <span class='o'>=</span> <span class='n'>db</span><span class='o'>.</span><span class='n'>Column</span><span class='p'>(</span><span class='n'>db</span><span class='o'>.</span><span class='n'>String</span><span class='p'>(</span><span class='mi'>255</span><span class='p'>))</span>
+    <span class='nb'>type</span> <span class='o'>=</span> <span class='n'>db</span><span class='o'>.</span><span class='n'>Column</span><span class='p'>(</span><span class='n'>db</span><span class='o'>.</span><span class='n'>String</span><span class='p'>(</span><span class='mi'>255</span><span class='p'>))</span>
+    <span class='n'>waypoint_number</span> <span class='o'>=</span> <span class='n'>db</span><span class='o'>.</span><span class='n'>Column</span><span class='p'>(</span><span class='n'>db</span><span class='o'>.</span><span class='n'>String</span><span class='p'>(</span><span class='mi'>255</span><span class='p'>))</span>
+    <span class='n'>co_ordinates</span> <span class='o'>=</span> <span class='n'>db</span><span class='o'>.</span><span class='n'>Column</span><span class='p'>(</span><span class='n'>db</span><span class='o'>.</span><span class='n'>String</span><span class='p'>(</span><span class='mi'>255</span><span class='p'>))</span>
+    <span class='n'>thumbnail</span> <span class='o'>=</span> <span class='n'>db</span><span class='o'>.</span><span class='n'>Column</span><span class='p'>(</span><span class='n'>db</span><span class='o'>.</span><span class='n'>String</span><span class='p'>(</span><span class='mi'>255</span><span class='p'>))</span>
+    <span class='n'>hi_res_image_url</span> <span class='o'>=</span> <span class='n'>db</span><span class='o'>.</span><span class='n'>Column</span><span class='p'>(</span><span class='n'>db</span><span class='o'>.</span><span class='n'>String</span><span class='p'>(</span><span class='mi'>255</span><span class='p'>))</span>
+    <span class='n'>marker_icon_url</span> <span class='o'>=</span> <span class='n'>db</span><span class='o'>.</span><span class='n'>Column</span><span class='p'>(</span><span class='n'>db</span><span class='o'>.</span><span class='n'>String</span><span class='p'>(</span><span class='mi'>255</span><span class='p'>))</span>
+    
+    <span class='k'>def</span> <span class='nf'>__repr__</span><span class='p'>(</span><span class='bp'>self</span><span class='p'>):</span>
+        <span class='k'>return</span> <span class='s'>&#39;&lt;Poi </span><span class='si'>%s</span><span class='s'>&gt;&#39;</span> <span class='o'>%</span> <span class='p'>(</span><span class='bp'>self</span><span class='o'>.</span><span class='n'>name</span><span class='p'>)</span>
+</code></pre>
+</div>
+<p>It can then be incorporated into an ARML template using the <a href='http://jinja.pocoo.org/docs/'>Jinja2</a> template engine. Settings for the World itself can be hardcoded in the template or (as I&#8217;ve done) set up in a the config file for the app.</p>
+
+<p>The points of interest were derived from the points that had previously been added to the Wikitude.me service.</p>
+<img src='/assets/images/IMG_0227.PNG' width='49%' /><img src='/assets/images/IMG_0228.PNG' width='49%' />
+<p>As well as co-ordinates, points were given names and descriptions which appear when clicked on in either the map or cam interfaces. Further formative evaluation followed, confirming some issues and raising new ones. It was still difficult to actually follow a path through the POIs in the map. Labels were too short to be useful, and the lack of distinguishing features made them difficult to tell apart.</p>
+
+<h4 id='next_adding_thumbnails'>Next: Adding thumbnails</h4>
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev"><a href="/archie/2012/05/02/4-building-the-web-service-details" title="4. Building the Web Service: Details">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next"><a href="/archie/2012/05/02/6-adding-thumbnails" title="6. Adding thumbnails">Next &rarr;</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+    
+  </div>
+  
+  <div class="span4">
+    <h4>Published</h4>
+    <div class="date"><span>02 May 2012</span></div>
+
+    
+  </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy; Robert Dallas Gray 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    
+  </body>
+</html>
+
