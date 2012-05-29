@@ -7,7 +7,7 @@ tags: []
 date: 2012-05-28 16:25:28
 ---
 {% include JB/setup %}
-After extensive trawling of [SCRAN](http://www.scran.ac.uk/) and [RCAHMS](rcahms.gov.uk/), as well as a good bit of squinting at Google Earth and cros-referencing with sites like [Hidden Glasgow](http://www.hiddenglasgow.com/) and [Urban Glasgow] (http://urbanglasgow.co.uk/), I felt I had enough material that the Wikitude World could add real interest to the walk.
+After extensive trawling of [SCRAN](http://www.scran.ac.uk/) and [RCAHMS](rcahms.gov.uk/), as well as a good bit of squinting at Google Earth and cross-referencing with sites like [Hidden Glasgow](http://www.hiddenglasgow.com/) and [Urban Glasgow] (http://urbanglasgow.co.uk/), I felt I had enough material that the Wikitude World could add real interest to the walk.
 
 We're having beautiful weather in Glasgow at the moment, so it wasn't too hard to persuade a couple of friends to help out. Both are reasonably experienced walkers, and both have some interest in local history.
 
@@ -37,7 +37,7 @@ I created a questionnaire a couple of days after the walk, but informal chat and
 
 10. The most recent update to Wikitude World Browser seems to be stricter about which points in a World are visible: further away ones are supposed to appear as the user approaches them. Unfortunately this didn't happen, and **the app 'stuck' on the points that were visible at the start of the walk**, causing considerable confusion. The app had to be restarted before the missing points appeared.
 
-11. **The walk wasn't really appropriate to the aapplication** -- the route I'd been set by my original advisor was problematic. Wayfinding was very tricky in places and certain parts of the walk weren't navigable (e.g. a very busy and narrow road without a pavement). The two fort sites weren't accessible (being behind barbed wire), so the usefulness of the camera view here couldn't really be tested.
+11. **The walk wasn't really appropriate to the application** -- the route I'd been set by my original advisor was problematic. Wayfinding was very tricky in places and certain parts of the walk weren't navigable (e.g. a very busy and narrow road without a pavement). The two fort sites weren't accessible (being behind barbed wire), so the usefulness of the camera view here couldn't really be tested.
 
 Overall, the evaluation has prompted something of a rethink: the final app should use a map view to lead users to some localised site where the camera view can be used for a short time to do something more fit to its purpose than simply mark POIs. One suggestion was to try overlaying historical photographs on the camera scene, which I want to investigate the practicality of next.
 
