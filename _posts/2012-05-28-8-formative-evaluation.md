@@ -2,7 +2,7 @@
 layout: post
 title: "8. Formative Evaluation"
 description: "Wikitude in the field"
-category: 
+category: archie
 tags: []
 date: 2012-05-28 16:25:28
 ---
