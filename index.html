@@ -7,7 +7,7 @@ tagline: Augmented Reality for Cultural Heritage Interpretation and Education
 
 {% for post in paginator.posts %}
 {% include themes/archie/post_header.html %}
-{{ post.content | split:'</p>' | first }} &hellip;</p>
+{{ post.content | split:'</p>' | first }} 
 <div>
   <a href="{{ BASE_PATH }}{{ post.url }}" title="More">Read More</a>
 </div>

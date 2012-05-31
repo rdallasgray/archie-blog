@@ -8,7 +8,6 @@ date: 2012-05-02 09:51:56
 ---
 {% include JB/setup %}
 
-####Deploying to and running on Heroku
 Heroku uses a number of small tools to make development and deployment easier; first we have to install the [Heroku command line tools](http://devcenter.heroku.com/categories/command-line).
 
 When using Python, dependency management is done using [virtualenv](http://pypi.python.org/pypi/virtualenv) and [pip](http://pypi.python.org/pypi/pip).

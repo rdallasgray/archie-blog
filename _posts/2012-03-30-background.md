@@ -8,8 +8,6 @@ date: 2012-03-30 11:00:00
 ---
 {% include JB/setup %}
 
-#### The Project
-
 I'm using this blog to document the development of my MSc project, in the hope that I can note down enough here to a) have a reasonable head-start on writing up the dissertation when the time comes, b) remember the various hoops I've had to jump through to get things done and c) perhaps have some utility to anyone else who chances on it.
 
 The project itself is to develop a prototype augmented reality smartphone app to encourage walking visits to the Antonine Wall. The Antonine Wall is the northernmost fortification of the Roman Empire, and stretches from the Firth of Clyde to the Firth of Forth in central Scotland. It's mostly not very interesting to the layperson -- not much remains of the wall or fortlets along it -- hence the suggested use of augmented reality techniques to try to give some sense of why it *is* interesting to archaeologists, historians etc.
