@@ -20,3 +20,15 @@ code {
 img {
     margin: 1px;
 }
+
+.post-date {
+    margin-top: 0.85em;
+}
+
+h4 {
+    margin-top: 1.7em;
+}
+
+.outdent {
+    margin-left: -8px;
+}

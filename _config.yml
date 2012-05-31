@@ -1,6 +1,6 @@
 # This is the default format. 
 # For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
-permalink: /:categories/:year/:month/:day/:title 
+permalink: /:year/:month/:day/:title 
 
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 auto: true
@@ -9,12 +9,15 @@ pygments: true
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : ARCHIE
+title: ARCHIE
 tagline: Augmented Reality for Cultural Heritage Interpretation and Education
-author :
-  name : Robert Dallas Gray
-  email : archie@robertdallasgray.com
-  github : rdallasgray
+description: Documenting the development of my MSc project, an augmented reality iPhone app to encourage walking visits to the Antonine Wall
+author:
+  name: Robert Dallas Gray
+  email: archie@robertdallasgray.com
+  github: rdallasgray
+
+paginate: 4
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -77,9 +80,9 @@ JB :
   # Set 'provider' to false to turn commenting off globally.
   #
   comments :
-    provider : false
+    provider : disqus
     disqus :
-      short_name : jekyllbootstrap
+      short_name : archie-blog
     livefyre :
       site_id : 123
     intensedebate :

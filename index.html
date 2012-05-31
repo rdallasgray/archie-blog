@@ -5,18 +5,32 @@ tagline: Augmented Reality for Cultural Heritage Interpretation and Education
 ---
 {% include JB/setup %}
 
-<h4>This is a blog documenting the development of my MSc project, an augmented reality iPhone app to encourage <br>walking visits to the Antonine Wall. It was built using Jekyll Bootstrap.</h4>
+{% for post in paginator.posts %}
+{% include themes/archie/post_header.html %}
+{{ post.content | split:'</p>' | first }} &hellip;</p>
+<div>
+  <a href="{{ BASE_PATH }}{{ post.url }}" title="More">Read More</a>
+</div>
+{% include themes/archie/post_footer.html %}
+{% endfor %}
 
-
-{% for post in site.posts limit:2 %}
 <hr>
-  <div class="row">
-    <div class="span8">
-      <div class="date"></div>
-      <h3><a href= "{{ BASE_PATH }}{{ post.url }}">{{ post.title }} <small>{{ post.description }}</small></a></h3>
-      {{ post.content }}
-    </div>
-    <div class="span2 light">Posted {{ post.date | date_to_long_string }}</div>
-  </div>
-  {% endfor %}
 
+<div class="pagination">
+  <ul>
+    {% if paginator.next_page %}
+    <li class="next"><a href="{{ BASE_PATH }}/page{{ paginator.next_page }}">&larr; Older posts</a></li>
+    {% else %}
+    <li class="next disabled"><a>&larr; Older posts</a>
+      {% endif %}
+      {% if paginator.previous_page %}
+      {% if paginator.previous_page == 1 %}
+    <li class="prev"><a href="{{ HOME_PATH }}">Newer posts &rarr;</a></li>
+    {% else %}
+    <li class="prev"><a href="{{ BASE_PATH }}/page{{ paginator.previous_page }}">Newer posts &rarr;</a></li>
+    {% endif %}
+    {% else %}
+    <li class="prev disabled"><a>Newer posts &rarr;</a></li>
+    {% endif %}
+  </ul>
+</div>

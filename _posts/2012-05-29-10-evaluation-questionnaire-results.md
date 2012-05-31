@@ -22,7 +22,7 @@ The stated aims of the application were to:
 
 4. **Be portable**, both in terms of the hardware the solution should use, and in terms of the data available to the application.
 
-####Here's a broad precis of the questionnaire results:
+####Here's a broad précis of the questionnaire results:
 
 1. Both subjects are **interested in local history, enjoy visiting museums, and enjoy walking or rambling**.
 
@@ -77,7 +77,5 @@ This leaves me with two major problems to address:
    - Overlaying historical photos on scenes (which would necessitate the user standing in a particular position)
    - Marking, e.g. the path of the Antonine Wall or a disused railway
    - Per one subject's suggestion, annotating distant land features
-
+   
 2. What to do about the inaccessible Antonine Wall sites. My inclination is that further development would be simpler, and the result more valuable, if the Wall is deemphasised. 
-
-
