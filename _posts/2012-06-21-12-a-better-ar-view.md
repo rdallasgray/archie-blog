@@ -11,7 +11,7 @@ In the previous posts I'd acknowledged that using the AR camera view in tandem w
 
 Well, I've now implemented the idea, and it works quite well.
 
-![Canmore via ARchitect]({{ BASE_PATH }}/assets/images/Canmore_01.jpg)
+![Canmore via ARchitect]({{ BASE_PATH }}/assets/images/Canmore_01.PNG)
 
 The core of the app is a back-end using [Sinatra](http://www.sinatrarb.com), running on [Heroku](http://heroku.com), which accepts a request in the form /latitude/longitude/radius. The app then searches Canmore on the Ordnance Survey grid reference for the given co-ordinates, and returns a list of index numbers. The front-end of the app can then asynchronously request images and other details for each index number (including the precise location of the site photographed), and place them in the AR display.
 
