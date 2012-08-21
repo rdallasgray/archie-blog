@@ -12,7 +12,7 @@ date: 2012-03-30 12:00:00
 
 The first step I took was to use the [wikitude.me](http://wikitude.me) community platform to place some points in the wikitude.me World. The whole process took less than a day, and the results were useful. Initially about 30 points of interest were added, charting the path of the walk.
 
-![The walk on Wikitude.me](/assets/images/Screenshot_1.png)
+![The walk on Wikitude.me]({{ BASE_PATH }}/assets/images/Screenshot_1.png)
 
 This put me in a position to do some very basic evaluation as regards broad user experience issues:
 
